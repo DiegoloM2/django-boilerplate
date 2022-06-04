@@ -22,7 +22,22 @@ class CustomUserAdmin(UserAdmin):
     #in order not to have errors (since the default User Admin has a 'username' field)
     filter_horizontal = ()
     list_filter = ()
-    fieldsets = ()
+    fieldsets = (
+        (None, {"fields": ("email", "password")}),
+        (
+            ("Permissions"),
+            {
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
+                ),
+            },
+        ),
+        (("Important dates"), {"fields": ("last_login", "date_joined")}),
+    )    
     add_fieldsets = (
         (
             None,

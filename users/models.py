@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 
 
@@ -36,7 +36,7 @@ class CustomUserManager(BaseUserManager):
 #tokenized password resets.
 
 
-class CustomUser(AbstractBaseUser): 
+class CustomUser(AbstractBaseUser, PermissionsMixin): 
     #email field - we don't wsant username
     email = models.EmailField(max_length=60, unique = True) 
     
