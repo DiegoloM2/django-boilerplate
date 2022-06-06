@@ -3,6 +3,10 @@ services:
     web:
         build: .
         command: python /project/manage.py runserver 0.0.0.0:8000
+        environment: 
+            - ENVIRONMENT=development
+            - DEBUG=1
+
         volumes: 
             - .:/project
         ports: 
