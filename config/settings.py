@@ -42,6 +42,12 @@ INSTALLED_APPS = [
 
     #Local Apps
     'users.apps.UsersConfig',
+
+
+    #3rd Party apps:
+    'allauth', 
+    'allauth.account',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +142,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Custom User:
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+
+#Advanced user registration - django-allauth
+
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', 
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+ACCOUNT_LOGOUT_REDIRECT = ""
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USERNAME_REQUIRED = False # new
+ACCOUNT_AUTHENTICATION_METHOD = 'email' # new
+ACCOUNT_EMAIL_REQUIRED = True # new
+ACCOUNT_UNIQUE_EMAIL = True # new

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
+import uuid
 
 
 class CustomUserManager(BaseUserManager): 
@@ -47,6 +48,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default = False)
     is_superuser = models.BooleanField(default = False)
+
+    #Set uuid instead of auto incrementing id for security:
+    id = models.UUIDField( # new
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False
+        )
 
     #Set this to whatever you want the user to be able to login with
     USERNAME_FIELD = 'email'
